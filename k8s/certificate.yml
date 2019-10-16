@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: xmarbles-com-tls
+spec:
+  secretName: xmarbles-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: xmarbles.com
+  dnsNames:
+    - xmarbles.com
+    - www.xmarbles.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - xmarbles.com
+          - www.xmarbles.com
